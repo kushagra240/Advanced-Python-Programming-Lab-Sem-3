@@ -105,6 +105,25 @@ class Library:
 			print(f"- {patron}")
 
 
+def add_sample_data(library):
+	library.add_book(Book("Python Basics", "John Smith", "101"))
+	library.add_book(Book("Data Science", "Asha Mehta", "102"))
+	library.add_book(Book("Clean Code", "Robert Martin", "103"))
+	library.register_patron(Patron("Sam", "P1"))
+	library.register_patron(Patron("Riya", "P2"))
+
+
+def menu():
+	print("\nMenu")
+	print("1. Add book")
+	print("2. Register patron")
+	print("3. Borrow book")
+	print("4. Return book")
+	print("5. Show books")
+	print("6. Show patrons")
+	print("7. Exit")
+
+
 def main():
 	print("MIT ADT University, Pune")
 	print("Library Management System")
@@ -112,35 +131,50 @@ def main():
 
 	library = Library()
 
-	book1 = Book("Python Programming", "John Zelle", "9781590282755")
-	book2 = Book("Data Structures", "Narasimha Karumanchi", "9788193245278")
-	book3 = Book("Clean Code", "Robert C. Martin", "9780132350884")
+	add_sample_data(library)
+	print("\nSample data added for quick use.")
 
-	patron1 = Patron("Aarav Sharma", "P001")
-	patron2 = Patron("Neha Patil", "P002")
+	while True:
+		menu()
+		choice = input("Enter your choice: ").strip()
 
-	print("\nAdding books...")
-	for book in (book1, book2, book3):
-		print(f"Added: {book.title}" if library.add_book(book) else f"Book already exists: {book.title}")
+		if choice == "1":
+			title = input("Enter book title: ").strip()
+			author = input("Enter author name: ").strip()
+			isbn = input("Enter ISBN: ").strip()
+			book = Book(title, author, isbn)
+			print("Book added." if library.add_book(book) else "Book already exists.")
 
-	print("\nRegistering patrons...")
-	for patron in (patron1, patron2):
-		print(f"Registered: {patron.name}" if library.register_patron(patron) else f"Patron already exists: {patron.name}")
+		elif choice == "2":
+			name = input("Enter patron name: ").strip()
+			patron_id = input("Enter patron ID: ").strip()
+			patron = Patron(name, patron_id)
+			print("Patron registered." if library.register_patron(patron) else "Patron already exists.")
 
-	success, message = library.borrow_book("P001", "9781590282755")
-	print("\n" + message)
+		elif choice == "3":
+			patron_id = input("Enter patron ID: ").strip()
+			isbn = input("Enter ISBN: ").strip()
+			success, message = library.borrow_book(patron_id, isbn)
+			print(message)
 
-	success, message = library.borrow_book("P002", "9780132350884")
-	print(message)
+		elif choice == "4":
+			patron_id = input("Enter patron ID: ").strip()
+			isbn = input("Enter ISBN: ").strip()
+			success, message = library.return_book(patron_id, isbn)
+			print(message)
 
-	success, message = library.return_book("P001", "9781590282755")
-	print("\n" + message)
+		elif choice == "5":
+			library.display_books()
 
-	success, message = library.borrow_book("P002", "9781590282755")
-	print(message)
+		elif choice == "6":
+			library.display_patrons()
 
-	library.display_books()
-	library.display_patrons()
+		elif choice == "7":
+			print("Exiting program.")
+			break
+
+		else:
+			print("Invalid choice. Please try again.")
 
 
 if __name__ == "__main__":
