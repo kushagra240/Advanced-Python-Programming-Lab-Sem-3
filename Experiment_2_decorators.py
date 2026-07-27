@@ -37,3 +37,14 @@ def simple_template(report):
 @bold_text
 def fancy_template(report):
 	return f"Title: {report.title}\nContent: {report.content}"
+
+
+def main():
+	Report.add_template("simple", simple_template)
+	Report.add_template("fancy", fancy_template)
+
+	report = Report("Monthly Report", "This is the monthly summary of activities.")
+
+	print(report("simple"))
+	print()
+	print(report("fancy"))
