@@ -28,3 +28,12 @@ class Report:
 
 	def __str__(self):
 		return f"Report(title={self.title}, content={self.content})"
+
+
+def simple_template(report):
+	return f"Title: {report.title}\nContent: {report.content}"
+
+
+@bold_text
+def fancy_template(report):
+	return f"Title: {report.title}\nContent: {report.content}"
