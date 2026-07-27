@@ -48,3 +48,7 @@ def main():
 	print(report("simple"))
 	print()
 	print(report("fancy"))
+
+
+if __name__ == "__main__":
+	main()
