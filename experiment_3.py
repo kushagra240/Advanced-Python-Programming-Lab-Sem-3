@@ -15,3 +15,8 @@ class CreditCardPayment(PaymentStrategy):
 class PayPalPayment(PaymentStrategy):
 	def pay(self, amount: float) -> None:
 		print(f"Paid {amount:.2f} using PayPal")
+
+
+class BitcoinPayment(PaymentStrategy):
+	def pay(self, amount: float) -> None:
+		print(f"Paid {amount:.2f} using Bitcoin")
