@@ -10,3 +10,8 @@ class PaymentStrategy(ABC):
 class CreditCardPayment(PaymentStrategy):
 	def pay(self, amount: float) -> None:
 		print(f"Paid {amount:.2f} using Credit Card")
+
+
+class PayPalPayment(PaymentStrategy):
+	def pay(self, amount: float) -> None:
+		print(f"Paid {amount:.2f} using PayPal")
