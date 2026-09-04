@@ -23,11 +23,15 @@ def fibonacci_iterative(n):
     return b
 
 
-# Main program
-n = int(input("Enter the value of n: "))
+def main():
+    n = int(input("Enter the value of n: "))
 
-if n < 0:
-    print("Please enter a non-negative integer.")
-else:
-    result = fibonacci_iterative(n)
-    print(f"The {n}th Fibonacci number is: {result}")
+    if n < 0:
+        print("Please enter a non-negative integer.")
+    else:
+        result = fibonacci_iterative(n)
+        print(f"The {n}th Fibonacci number is: {result}")
+
+
+if __name__ == "__main__":
+    main()
