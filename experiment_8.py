@@ -1,22 +1,21 @@
-# File Handling and I/O
+# Experiment No. 8: File Handling and I/O
+# Aim: Read data from an input file, count lines, extract the first two lines, and write them to a new file.
 
-# Read input file
-file = open("input.txt", "r")
-lines = file.readlines()
-file.close()
+# 1. Read the input file
+with open("input.txt", "r", encoding="utf-8") as file:
+    lines = file.readlines()
 
-# Count lines
+# 2. Count total lines
 print("Total lines:", len(lines))
 
-# Extract first two lines
+# 3. Extract the first two lines
 first_two = lines[:2]
+print("\nFirst two lines:")
+for line in first_two:
+    print(line, end="")
 
-print("First two lines:")
-print("".join(first_two))
+# 4. Write extracted lines to the output file
+with open("output.txt", "w", encoding="utf-8") as file:
+    file.writelines(first_two)
 
-# Write to output file
-file = open("output.txt", "w")
-file.writelines(first_two)
-file.close()
-
-print("Data written to output.txt")
+print("\n\nData written to output.txt successfully.")
